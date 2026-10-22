@@ -9,6 +9,10 @@ on:
         description: "Invia solo un messaggio di prova su Telegram"
         type: boolean
         default: false
+      rielabora:
+        description: "Rielabora i bollettini piu' recenti e riscrive le allerte nello storico"
+        type: boolean
+        default: false
 
 concurrency:
   group: monitor-allerte
@@ -32,4 +36,5 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TEST_TELEGRAM: ${{ inputs.test_telegram }}
+          RIELABORA: ${{ inputs.rielabora }}
         run: python monitor_allerte.py
